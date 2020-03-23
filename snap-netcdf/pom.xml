@@ -154,7 +154,7 @@
                             <targetPath>modules/lib/</targetPath>
                             <includes>
                                 <include>**/*.dll</include>
-                                <include>**/*.so</include>
+                                <include>**/*.so*</include>
                             </includes>
                         </nbmResource>
                     </nbmResources>

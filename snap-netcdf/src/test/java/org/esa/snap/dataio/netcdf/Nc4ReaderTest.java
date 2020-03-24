@@ -105,7 +105,7 @@ public class Nc4ReaderTest {
     }
 
     @Test
-    @Ignore("Native NetCDF libraries are currently not loaded in tests")
+    @Ignore("fails already while creating test product independent of NetCDF version, test is not in master")
     public void testWithExistingLatLonBandsAndCrsGeoCoding() throws IOException {
         DummyProductBuilder pb = new DummyProductBuilder();
         pb.size(DummyProductBuilder.Size.SMALL);

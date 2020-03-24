@@ -16,7 +16,6 @@ import java.util.stream.IntStream;
 /**
  * @author Marco Peters
  */
-@Ignore("Native NetCDF libraries are currently not loaded in tests")
 public class MaxStringAttributeLengthTest {
 
     static {

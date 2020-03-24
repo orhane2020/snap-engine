@@ -105,7 +105,7 @@ public class Nc4ReaderTest {
     }
 
     @Test
-    @Ignore("fails already while creating test product independent of NetCDF version, test is not in master")
+    //@Ignore("fails already while creating test product independent of NetCDF version, test is not in master")
     public void testWithExistingLatLonBandsAndCrsGeoCoding() throws IOException {
         DummyProductBuilder pb = new DummyProductBuilder();
         pb.size(DummyProductBuilder.Size.SMALL);

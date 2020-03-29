@@ -29,7 +29,7 @@ public class NetCdfActivator implements Activator {
         final ResourceInstaller resourceInstaller = new ResourceInstaller(sourceDirPath, auxdataDirectory);
 
         try {
-            System.out.println("installing NetCDF resources from " + sourceDirPath + " into " + auxdataDirectory);
+            SystemUtils.LOG.fine("installing NetCDF resources from " + sourceDirPath + " into " + auxdataDirectory);
             resourceInstaller.install(".*", ProgressMonitor.NULL);
         } catch (IOException e) {
             SystemUtils.LOG.severe("Native libraries for NetCDF could not be extracted to" + auxdataDirectory);
@@ -54,17 +54,6 @@ public class NetCdfActivator implements Activator {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
-        }
-        try {
-            Process process = new ProcessBuilder("bash", "-c",
-                                                 "export LD_LIBRARY_PATH="+auxdataDirectory.toAbsolutePath().resolve(arch).toString()+":$LD_LIBRARY_PATH;" +
-                                                         "/usr/bin/ldd "+auxdataDirectory.toAbsolutePath().resolve(arch).toString() + "/libnetcdf.so").start();
-            String output = IOUtils.toString(process.getInputStream(), StandardCharsets.UTF_8);
-            String stderr = IOUtils.toString(process.getErrorStream(), StandardCharsets.UTF_8);
-            System.out.println("ldd libnetcdf.so stderr returns: " + stderr);
-            System.out.println("ldd libnetcdf.so stdout returns: " + output);
-        } catch (IOException e) {
-            e.printStackTrace();
         }
         System.out.println("****netcdf_jna_path = " + jna_path);
         Nc4Iosp.setLibraryAndPath(jna_path, null);

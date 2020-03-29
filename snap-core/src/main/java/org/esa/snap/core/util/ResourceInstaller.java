@@ -45,7 +45,7 @@ import static java.nio.file.StandardCopyOption.*;
  */
 public class ResourceInstaller {
 
-    private final Set<PosixFilePermission> rwsr_xr_x = PosixFilePermissions.fromString("rwxr-xr-x");
+    private final Set<PosixFilePermission> rwxr_xr_x = PosixFilePermissions.fromString("rwxr-xr-x");
 
     private final Path sourceBasePath;
     private final Path targetDirPath;
@@ -106,11 +106,8 @@ public class ResourceInstaller {
                         Files.copy(resource, targetFile, REPLACE_EXISTING, COPY_ATTRIBUTES);
                         // set executable here since maven resource plugin is broken and drops them
                         if (Files.getFileAttributeView(targetFile, PosixFileAttributeView.class) != null) {
-                            Files.setPosixFilePermissions(targetFile, rwsr_xr_x);
+                            Files.setPosixFilePermissions(targetFile, rwxr_xr_x);
                         }
-                        System.out.println("resource " + targetFile + " updated");
-                    } else if (!Files.isDirectory(resource)) {
-                        System.out.println("resource " + targetFile + " up-to-date");
                     }
                     pm.worked(1);
                 }
